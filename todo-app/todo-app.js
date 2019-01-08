@@ -8,13 +8,13 @@ const filters = {
 renderTodos(todos, filters)
 
 // Use filter to search keyword in Todos
-document.querySelector('#todo-filter').addEventListener('input', function(e) {
+document.querySelector('#todo-filter').addEventListener('input', (e) => {
     filters.searchText = e.target.value
     renderTodos(todos, filters)
 })
 
 // Add a todo
-document.querySelector('#add-todo').addEventListener('submit', function(e) {
+document.querySelector('#add-todo').addEventListener('submit', (e) => {
     e.preventDefault()
     todos.push({
         id: uuidv4(),
@@ -28,7 +28,7 @@ document.querySelector('#add-todo').addEventListener('submit', function(e) {
 })
 
 // Use checkbox to hide completed todos
-document.querySelector('#hide-completed').addEventListener('change', function(e) {
+document.querySelector('#hide-completed').addEventListener('change', (e) => {
     filters.hideCompleted = e.target.checked
     renderTodos(todos, filters)
 })
