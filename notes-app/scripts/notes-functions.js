@@ -28,16 +28,9 @@ const removeNote = (id) => {
 
 // Generate DOM structure
 const generateNoteDOM = (note) => {
-    const noteEle = document.createElement('div')
-    const textEle = document.createElement('a')
-    const button = document.createElement('button')
-    button.textContent = 'x'
-    noteEle.appendChild(button)
-    button.addEventListener('click', () =>  {
-        removeNote(note.id)
-        saveNotes(notes)
-        renderNotes(notes, filters)
-    })
+    const noteEle = document.createElement('a')
+    const textEle = document.createElement('p')
+    const statusEle = document.createElement('p')
 
     if(note.title.length > 0) {
         textEle.textContent = note.title
@@ -45,9 +38,15 @@ const generateNoteDOM = (note) => {
     else {
         textEle.textContent = 'Unnamed Note'
     }
- 
-    textEle.setAttribute('href', `/edit.html#${note.id}`)
+    textEle.classList.add('list-item__title')
     noteEle.appendChild(textEle)
+
+    noteEle.setAttribute('href', `/edit.html#${note.id}`)
+    noteEle.classList.add('list-item')
+
+    statusEle.textContent = getLastUpdate(note.updatedAt)
+    statusEle.classList.add('list-item__subtitle')
+    noteEle.appendChild(statusEle)
 
     return noteEle
 }
@@ -85,15 +84,24 @@ const sortNotes = (notes, sortBy) => {
 
 // Render application notes
 const renderNotes = (notes, filters) => {
+    const notesEl = document.querySelector('#notes')
     notes = sortNotes(notes, filters.sortBy)
     const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
 
-    document.querySelector('#notes').innerHTML = ''
+    notesEl.innerHTML = ''
 
-    filteredNotes.forEach((note) => {
-        const noteEle = generateNoteDOM(note)
-        document.querySelector('#notes').appendChild(noteEle)
-    })
+    if(filteredNotes.length > 0) {
+        filteredNotes.forEach((note) => {
+            const noteEle = generateNoteDOM(note)
+            notesEl.appendChild(noteEle)
+        })
+    }else {
+        const emptyNotes = document.createElement('p')
+        emptyNotes.classList.add('empty-message')
+        emptyNotes.textContent = 'You have no notes.'
+        notesEl.appendChild(emptyNotes)
+    }
+    
 }
 
 // Get the last update time

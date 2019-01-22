@@ -2,20 +2,32 @@
 
 <htm>
     <head>
-
+        <title>Notes App</title>
+        <link href="/styles/styles.css" rel="stylesheet">
     </head>
     <body>
-        <a href="/index.html">HOME</a>
-        <h1>Edit your note here:</h1>
-        <input id="note-title" placeholder="note-title">
-        <br>
-        <span id="last-edited"></span>
-        <br><br>
-        <textarea id="note-body" placeholder="Enter note text"></textarea>
-        <button id="note-remove-btn">Delete</button>
+        <div class="header">
+            <div class="container">
+                <h1 class="header__title">Notes App</h1>
+                <h2 class="header__subtitle">Take notes and never forget</h2> 
+            </div>
+        </div>
+        <div class="actions">
+            <div class="actions__container actions__container--spaced">
+                <a href="/index.html">HOME</a>
+                <span id="last-edited"></span>
+            </div>
+        </div>
+        <div class="container">
+            <input id="note-title" class="title-input" placeholder="note-title">
+            <textarea id="note-body" class="body-input" placeholder="Enter note text"></textarea>
+            <button id="note-remove-btn" class="button button--secondary">Delete</button>
+        </div>
+        
+        
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js"></script>
-        <script src="notes-functions.js"></script>
-        <script src="notes-edit.js"></script>
+        <script src="/scripts/notes-functions.js"></script>
+        <script src="/scripts/notes-edit.js"></script>
     </body>
 </htm>
