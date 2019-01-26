@@ -1,5 +1,5 @@
 const getPuzzle = async (wordCount) => {
-   const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`, {})
+   const response = await fetch(`//puzzle.mead.io/puzzle?wordCount=${wordCount}`, {})
    if(response.status === 200) {
        const data = await response.json()
        return data.puzzle
@@ -9,7 +9,7 @@ const getPuzzle = async (wordCount) => {
 }
 
 const getCountry = async (countryCode) => {
-    const response = await fetch(`http://restcountries.eu/rest/v2/all`, {})
+    const response = await fetch(`//restcountries.eu/rest/v2/all`, {})
     if(response.status === 200) {
         const countries = await response.json()
         return countries.find((country) => country.alpha2Code === countryCode)
@@ -20,7 +20,7 @@ const getCountry = async (countryCode) => {
 
 const myToken = 'c28fa2e75f215f'
 const getIPLocation = async () => {
-    const response = await fetch(`http://ipinfo.io/json?token=${myToken}`, {})
+    const response = await fetch(`//ipinfo.io/json?token=${myToken}`, {})
     if(response.status === 200) {
         return response.json()
     }else {
@@ -32,3 +32,5 @@ const getCurrentCountry = async () => {
     const curLocation = await getIPLocation()
     return getCountry(curLocation.country)
 }
+
+export { getPuzzle as default }
