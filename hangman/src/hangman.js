@@ -43,7 +43,7 @@ class Hangman {
         const isUnique = !this.letterGuessed.includes(guess)
         const isBadGuess = !this.wordToGuess.includes(guess)
         if(isUnique) {
-            this.letterGuessed.push(guess)
+            this.letterGuessed = [...this.letterGuessed, guess]
         }
     
         if(isUnique && isBadGuess) {
